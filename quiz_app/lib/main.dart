@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/question.dart';
 
 void main() => runApp(const MyApp());
 
@@ -34,31 +35,33 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('My First App'),
         ),
-        body: Column(children: [
-          Text(
-            questions[_questionIndex],
-          ),
-          ElevatedButton(
-            onPressed: _answerQuestion,
-            child: const Text('Answer 1'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (kDebugMode) {
-                print('Answer 2 chosen!');
-              }
-            },
-            child: const Text('Answer 2'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (kDebugMode) {
-                print('Answer 3 chosen');
-              }
-            },
-            child: const Text('Answer 3'),
-          ),
-        ]),
+        body: Column(
+          children: [
+            Question(
+              questions[_questionIndex],
+            ),
+            ElevatedButton(
+              onPressed: _answerQuestion,
+              child: const Text('Answer 1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (kDebugMode) {
+                  print('Answer 2 chosen!');
+                }
+              },
+              child: const Text('Answer 2'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (kDebugMode) {
+                  print('Answer 3 chosen');
+                }
+              },
+              child: const Text('Answer 3'),
+            ),
+          ],
+        ),
       ),
     );
   }
