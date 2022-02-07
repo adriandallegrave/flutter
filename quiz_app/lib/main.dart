@@ -3,55 +3,62 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  var questionIndex = 0;
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-  void answerQuestion() {
-    questionIndex += 1;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex += 1;
+    });
     if (kDebugMode) {
-      print(questionIndex);
+      print(_questionIndex);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What\'s your favorite color?',
+      "What's your favorite color?",
+      "What's your favorite animal?",
     ];
-    questions.add('What\'s your favorite animarl?');
 
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('My first App'),
+          title: const Text('My First App'),
         ),
-        body: Column(
-          children: [
-            Text(questions[questionIndex]),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: const Text('Answer 1'),
-            ),
-            ElevatedButton(
-              child: const Text('Answer 2'),
-              onPressed: () {
-                if (kDebugMode) {
-                  print('Answer 2 chosen');
-                }
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Answer 3'),
-              onPressed: () {
-                if (kDebugMode) {
-                  print('Answer 3 chosen');
-                }
-              },
-            ),
-          ],
-        ),
+        body: Column(children: [
+          Text(
+            questions[_questionIndex],
+          ),
+          ElevatedButton(
+            onPressed: _answerQuestion,
+            child: const Text('Answer 1'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (kDebugMode) {
+                print('Answer 2 chosen!');
+              }
+            },
+            child: const Text('Answer 2'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (kDebugMode) {
+                print('Answer 3 chosen');
+              }
+            },
+            child: const Text('Answer 3'),
+          ),
+        ]),
       ),
     );
   }
