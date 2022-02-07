@@ -24,6 +24,8 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter App'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // ignore: sized_box_for_whitespace
           Container(
@@ -35,6 +37,7 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           const Card(
+            color: Colors.red,
             child: Text('LIST OF TX'),
           )
         ],
