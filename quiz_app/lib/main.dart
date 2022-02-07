@@ -6,9 +6,12 @@ void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  var questionIndex = 0;
+
   void answerQuestion() {
+    questionIndex += 1;
     if (kDebugMode) {
-      print('Answer chosen!');
+      print(questionIndex);
     }
   }
 
@@ -18,6 +21,7 @@ class MyApp extends StatelessWidget {
       'What\'s your favorite color?',
     ];
     questions.add('What\'s your favorite animarl?');
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const Text('The question!'),
+            Text(questions[questionIndex]),
             ElevatedButton(
               onPressed: answerQuestion,
               child: const Text('Answer 1'),
