@@ -35,8 +35,9 @@ class MyHomePage extends StatelessWidget {
       date: DateTime.now(),
     ),
   ];
-  late String titleInput;
-  late String amountInput;
+
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,6 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter App'),
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           const SizedBox(
@@ -65,13 +65,11 @@ class MyHomePage extends StatelessWidget {
                 children: <Widget>[
                   TextField(
                     decoration: const InputDecoration(labelText: 'Title'),
-                    onChanged: (val) {
-                      titleInput = val;
-                    },
+                    controller: titleController,
                   ),
                   TextField(
                     decoration: const InputDecoration(labelText: 'Amount'),
-                    onChanged: (val) => amountInput = val,
+                    controller: amountController,
                   ),
                   TextButton(
                     child: const Text('Add Transaction'),
@@ -80,10 +78,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (kDebugMode) {
-                        print(titleInput);
-                      }
-                      if (kDebugMode) {
-                        print(amountInput);
+                        print(titleController.text);
                       }
                     },
                   ),
