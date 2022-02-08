@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_expenses_app/transaction.dart';
 import 'package:intl/intl.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
@@ -33,6 +35,8 @@ class MyHomePage extends StatelessWidget {
       date: DateTime.now(),
     ),
   ];
+  late String titleInput;
+  late String amountInput;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +45,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter App'),
       ),
       body: Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           const SizedBox(
@@ -58,20 +63,29 @@ class MyHomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
+                  TextField(
+                    decoration: const InputDecoration(labelText: 'Title'),
+                    onChanged: (val) {
+                      titleInput = val;
+                    },
                   ),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
+                  TextField(
+                    decoration: const InputDecoration(labelText: 'Amount'),
+                    onChanged: (val) => amountInput = val,
                   ),
                   TextButton(
-                    onPressed: () {},
-                    child: const Text('Add transaction'),
+                    child: const Text('Add Transaction'),
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(
-                        Colors.purple,
-                      ),
+                      foregroundColor: MaterialStateProperty.all(Colors.purple),
                     ),
+                    onPressed: () {
+                      if (kDebugMode) {
+                        print(titleInput);
+                      }
+                      if (kDebugMode) {
+                        print(amountInput);
+                      }
+                    },
                   ),
                 ],
               ),
@@ -95,7 +109,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.all(10),
                       child: Text(
-                        '\$ ${tx.amount}',
+                        '\$${tx.amount}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -114,7 +128,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          DateFormat.yMMMMd().format(tx.date),
+                          DateFormat.yMMMd().format(tx.date),
                           style: const TextStyle(
                             color: Colors.grey,
                           ),
