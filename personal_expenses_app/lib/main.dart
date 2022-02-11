@@ -104,7 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           IconButton(
             onPressed: () => _startAddNewTransaction(context),
-            icon: const Icon(Icons.add),
+            icon: const Icon(
+              Icons.add,
+            ),
           ),
         ],
       ),
