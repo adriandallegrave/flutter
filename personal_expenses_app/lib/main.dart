@@ -55,14 +55,44 @@ class _MyHomePageState extends State<MyHomePage> {
     Transaction(
       id: 't1',
       title: 'New Shoes',
-      amount: 69.99,
+      amount: 125.99,
       date: DateTime.now(),
     ),
     Transaction(
       id: 't2',
       title: 'Weekly Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
+      amount: 79.43,
+      date: DateTime.now().subtract(const Duration(days: 1)),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'F1 Model',
+      amount: 299.99,
+      date: DateTime.now().subtract(const Duration(days: 2)),
+    ),
+    Transaction(
+      id: 't4',
+      title: 'Elden Ring',
+      amount: 60.00,
+      date: DateTime.now().subtract(const Duration(days: 3)),
+    ),
+    Transaction(
+      id: 't5',
+      title: 'Flowers',
+      amount: 35.00,
+      date: DateTime.now().subtract(const Duration(days: 4)),
+    ),
+    Transaction(
+      id: 't6',
+      title: 'Movie Tickets',
+      amount: 45.80,
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Transaction(
+      id: 't7',
+      title: 'Twitch Subscription',
+      amount: 7.50,
+      date: DateTime.now().subtract(const Duration(days: 6)),
     ),
   ];
 
@@ -111,24 +141,38 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Personal Expenses'),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () => _startAddNewTransaction(context),
-            icon: const Icon(
-              Icons.add,
-            ),
+    final appBar = AppBar(
+      title: const Text('Personal Expenses'),
+      actions: <Widget>[
+        IconButton(
+          onPressed: () => _startAddNewTransaction(context),
+          icon: const Icon(
+            Icons.add,
           ),
-        ],
-      ),
+        ),
+      ],
+    );
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_userTransactions, _deleteTransaction),
+            SizedBox(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.25,
+              child: Chart(_recentTransactions),
+            ),
+            SizedBox(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.75,
+              child: TransactionList(_userTransactions, _deleteTransaction),
+            ),
           ],
         ),
       ),
