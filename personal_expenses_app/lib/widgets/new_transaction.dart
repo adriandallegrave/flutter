@@ -86,7 +86,9 @@ class _NewTransactionState extends State<NewTransaction> {
                   ),
                   TextButton(
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(Colors.purple),
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                     child: const Text(
                       'Choose Date',
@@ -99,11 +101,14 @@ class _NewTransactionState extends State<NewTransaction> {
                 ],
               ),
             ),
-            TextButton(
+            ElevatedButton(
               child: const Text('Add Transaction'),
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(Colors.purple),
-              ),
+                  foregroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.onPrimary),
+                  backgroundColor: MaterialStateProperty.all(
+                    Theme.of(context).colorScheme.primary,
+                  )),
               onPressed: _submitData,
             ),
           ],
