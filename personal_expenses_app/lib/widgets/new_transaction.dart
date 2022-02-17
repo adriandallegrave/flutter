@@ -57,61 +57,68 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            TextField(
-              decoration: const InputDecoration(labelText: 'Title'),
-              controller: _titleController,
-              onSubmitted: (_) => _submitData(),
-            ),
-            TextField(
-              decoration: const InputDecoration(labelText: 'Amount'),
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => _submitData(),
-            ),
-            SizedBox(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(
-                        Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    child: const Text(
-                      'Choose Date',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: _presentDatePicker,
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              TextField(
+                decoration: const InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                onSubmitted: (_) => _submitData(),
               ),
-            ),
-            ElevatedButton(
-              child: const Text('Add Transaction'),
-              style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all(
-                      Theme.of(context).colorScheme.onPrimary),
-                  backgroundColor: MaterialStateProperty.all(
-                    Theme.of(context).colorScheme.primary,
-                  )),
-              onPressed: _submitData,
-            ),
-          ],
+              TextField(
+                decoration: const InputDecoration(labelText: 'Amount'),
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => _submitData(),
+              ),
+              SizedBox(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
+                      ),
+                    ),
+                    TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all(
+                          Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                      child: const Text(
+                        'Choose Date',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: _presentDatePicker,
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                child: const Text('Add Transaction'),
+                style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).colorScheme.onPrimary),
+                    backgroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.primary,
+                    )),
+                onPressed: _submitData,
+              ),
+            ],
+          ),
         ),
       ),
     );
